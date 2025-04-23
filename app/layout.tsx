@@ -6,7 +6,7 @@ import { Providers } from '@/components/providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Asma Smart Home',
+  title: "Asma's Smart Home",
   description: 'Control your smart home devices from anywhere',
 };
 

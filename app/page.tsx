@@ -10,7 +10,7 @@ export default function WelcomePage() {
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Welcome to <span className="text-primary">Asma Smart Home</span>
+              Welcome to <span className="text-primary">Asma's Smart Home</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Control your home from anywhere in the world with our intuitive smart home solution.

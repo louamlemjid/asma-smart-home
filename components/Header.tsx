@@ -25,7 +25,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Home className="h-6 w-6" />
-            <span className="text-lg font-semibold">Asma Smart Home</span>
+            <span className="text-lg font-semibold">Asma's Smart Home</span>
           </Link>
 
           {/* Right side navigation */}
