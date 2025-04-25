@@ -16,7 +16,7 @@ export class SmartHomeState implements SmartHomeStateType {
   electricityOn: boolean;
   motionDetected: boolean;
   lastUpdated: Date;
-  private listeners: Map<string, (state: SmartHomeStateType) => void> = new Map();
+  listeners: Map<string, (state: SmartHomeStateType) => void> = new Map();
 
   constructor(deviceId: string, data: Partial<SmartHomeStateType> = {}) {
     this.deviceId = deviceId;

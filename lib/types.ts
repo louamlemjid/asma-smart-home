@@ -1,11 +1,12 @@
+import { Timestamp } from 'firebase/firestore';
 // User Types
 export interface UserModel {
   id: string;
   email: string;
   displayName?: string;
   devices: string[]; // Device IDs
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date|Timestamp;
+  updatedAt: Date|Timestamp;
 }
 
 // Device Types
@@ -15,9 +16,9 @@ export interface DeviceModel {
   userId: string;
   type: 'esp8266';
   isOnline: boolean;
-  lastSeen: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  lastSeen: Date|Timestamp;
+  createdAt: Date|Timestamp;
+  updatedAt: Date|Timestamp;
 }
 
 // Smart Home State Types
@@ -27,6 +28,16 @@ export interface SmartHomeState {
   electricityOn: boolean;
   motionDetected: boolean;
   lastUpdated: Date;
+  deviceId: string;
+  listeners: Map<string, (state: SmartHomeState) => void>;
+  getState(): Promise<SmartHomeState>
+  updateState(data: Partial<SmartHomeState>): Promise<SmartHomeState> 
+  subscribeToChanges(listenerId: string, callback: (state: SmartHomeState) => void): () => void;
+  unsubscribeFromChanges(listenerId: string): void;
+  setDoorOpen(doorOpen: boolean): Promise<SmartHomeState>;
+  setLightOn(lightOn: boolean): Promise<SmartHomeState>;
+  setElectricityOn(electricityOn: boolean): Promise<SmartHomeState>;
+  setMotionDetected(motionDetected: boolean): Promise<SmartHomeState>;
 }
 
 // API Response Types

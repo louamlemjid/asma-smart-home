@@ -29,9 +29,9 @@ export class Device implements DeviceModel {
     this.userId = data.userId || '';
     this.type = 'esp8266';
     this.isOnline = data.isOnline || false;
-    this.lastSeen = data.lastSeen || new Date();
-    this.createdAt = data.createdAt || new Date();
-    this.updatedAt = data.updatedAt || new Date();
+    this.lastSeen = data.lastSeen instanceof Date ? data.lastSeen : (data.lastSeen?.toDate ? data.lastSeen.toDate() : new Date());
+    this.createdAt = data.createdAt instanceof Date ? data.createdAt : (data.createdAt?.toDate ? data.createdAt.toDate() : new Date());
+    this.updatedAt = data.updatedAt instanceof Date ? data.updatedAt : (data.updatedAt?.toDate ? data.updatedAt.toDate() : new Date());
   }
 
   // Create a new device in Firestore

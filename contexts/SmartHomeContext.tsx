@@ -88,7 +88,7 @@ export const SmartHomeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // Subscribe to state changes
       unsubscribeRef.current = sseServiceRef.current.subscribeToStateChanges((state) => {
         console.log('State change received for', selectedDevice.id, state);
-        setDeviceState({ ...state }); // Create new object to trigger re-render
+        setDeviceState(new SmartHomeState(state.deviceId, state)); // Ensure state is a SmartHomeState instance
       });
     }
 
@@ -113,7 +113,7 @@ export const SmartHomeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       setLoading(true);
       const state = await DeviceService.getDeviceState(deviceId);
       console.log('Loaded initial state for', deviceId, state);
-      setDeviceState({ ...state }); // Create new object
+      setDeviceState(new SmartHomeState(state.deviceId, state)); // Ensure state is a SmartHomeState instance
     } catch (error) {
       console.error('Error loading device state:', error);
       toast.error('Failed to load device state');
@@ -218,7 +218,7 @@ export const SmartHomeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       setLoading(true);
       const state = await DeviceService.controlDoor(selectedDevice.id, isOpen);
-      setDeviceState({ ...state }); // Create new object
+      setDeviceState(new SmartHomeState(state.deviceId, state)); // Ensure state is a SmartHomeState instance
       toast.success(`Door ${isOpen ? 'opened' : 'closed'} successfully`);
     } catch (error) {
       console.error('Error controlling door:', error);
@@ -238,7 +238,7 @@ export const SmartHomeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       setLoading(true);
       const state = await DeviceService.controlLight(selectedDevice.id, isOn);
-      setDeviceState({ ...state }); // Create new object
+      setDeviceState(new SmartHomeState(state.deviceId, state)); // Ensure state is a SmartHomeState instance
       toast.success(`Light turned ${isOn ? 'on' : 'off'} successfully`);
     } catch (error) {
       console.error('Error controlling light:', error);
@@ -258,7 +258,7 @@ export const SmartHomeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       setLoading(true);
       const state = await DeviceService.controlElectricity(selectedDevice.id, isOn);
-      setDeviceState({ ...state }); // Create new object
+      setDeviceState(new SmartHomeState(state.deviceId, state)); // Ensure state is a SmartHomeState instance
       toast.success(`Electricity ${isOn ? 'restored' : 'cut'} successfully`);
     } catch (error) {
       console.error('Error controlling electricity:', error);

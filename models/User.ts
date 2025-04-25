@@ -32,8 +32,8 @@ export class User implements UserModel {
     this.email = data.email || '';
     this.displayName = data.displayName;
     this.devices = data.devices || [];
-    this.createdAt = data.createdAt || new Date();
-    this.updatedAt = data.updatedAt || new Date();
+    this.createdAt = data.createdAt instanceof Date ? data.createdAt : data.createdAt?.toDate() || new Date();
+    this.updatedAt = data.updatedAt instanceof Date ? data.updatedAt : data.updatedAt?.toDate() || new Date();
   }
 
   // Create a new user in Firebase Auth and Firestore

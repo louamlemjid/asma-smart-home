@@ -230,7 +230,11 @@ export function DeviceList() {
                     {device.isOnline ? 'Online' : 'Offline'}
                   </Badge>
                 </div>
-                <CardDescription>Last seen: {new Date(device.lastSeen.seconds*1000).toLocaleString()}</CardDescription>
+                <CardDescription>
+                  Last seen: {device.lastSeen instanceof Date 
+                    ? device.lastSeen.toLocaleString() 
+                    : new Date(device.lastSeen.seconds * 1000).toLocaleString()}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm">
